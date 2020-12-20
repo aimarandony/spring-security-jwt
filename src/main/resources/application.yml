@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test
+    #url: jdbc:mysql://localhost:3306/security_demo_db
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        # dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        id:
+          new_generator_mappings: false
+  h2:
+    console:
+      enabled: true
+server:
+  port: 8080
+
+security:
+  jwt:
+    token:
+      secret-key: anny-secret
+      expire-length: 600000 #10 minutes duration by default: 10 min * 60 sec * 1000 mls
+
+UserController:
+  signin: Authenticates user and returns its JWT token.
+  signup: Creates user and returns its JWT token
+  delete: Deletes specific user by username
+  search: Returns specific user by username
+  me: Returns current user's data
+  refresh: Return a new Token
